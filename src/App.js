@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Game from './components/game';
+import PlayingField from './components/PlayingField';
 
 const AppContainer = styled.div`
   height: 100vh;
@@ -7,10 +7,12 @@ const AppContainer = styled.div`
   justify-content: center;
   align-items: center; 
 `
+
+
 function App() {
   return (
     <AppContainer>
-      <Game />
+      <PlayingField />
     </AppContainer>
   );
 }
