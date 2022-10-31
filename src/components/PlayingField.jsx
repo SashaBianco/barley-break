@@ -10,9 +10,9 @@ const Container = styled.div`
     grid-template-columns: 150px 150px 150px 150px;
 `;
 
-const PlayingField = (props) => {
-    const [numbers, setNumbers] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,'']);
-    const [cells, setCell] = useState( [
+const PlayingField = () => {
+    const [numbers, setNumbers] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null]);
+    const [cells, setCell] = useState([
         {value: numbers[0]},
         {value: numbers[1]},
         {value: numbers[2]},
@@ -31,10 +31,17 @@ const PlayingField = (props) => {
         {value: numbers[15]},
     ])
 
+
     return (
         <Container>
             {cells.map(cell =>
-                <Cell cell = {cell} key = {cell.value}/>
+                <Cell 
+                    cell = {cell} 
+                    key = {cell.value}
+                    numbers = {numbers} 
+                    setNumbers = {setNumbers} 
+                    setCell = {setCell}
+                />
             )}
         </Container>
             
