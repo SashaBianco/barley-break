@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const Field = styled.div`
-border 1px solid gray;
+border: 1px solid gray;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -54,7 +54,7 @@ const Cell = (props) => {
     }
     
 
-    const handlerCellChange = ({setNumbers}) => {
+    const handlerCellChange = () => {
         let newArray = getCurrentArray();
         props.setNumbers(newArray);
 
