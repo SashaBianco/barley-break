@@ -20,7 +20,7 @@ const PlayingField = (props) => {
                     numbers = {props.numbers} 
                     setNumbers = {props.setNumbers} 
                     setCell = {props.setCell}
-                    handlerChangeState={props.handlerChangeState}
+                    onStateChange={props.onStateChange}
                 />
             )}
         </Container>

@@ -39,7 +39,7 @@ function App() {
   }
 
   const handlerChangeState = (array) => {
-    let newCell = [
+    const Cell = [
         {value: array[0]},
         {value: array[1]},
         {value: array[2]},
@@ -58,22 +58,22 @@ function App() {
         {value: array[15]},
     ]
     setNumbers(array);
-    setCell(newCell);
+    setCell(Cell);
 }
 
 
   return (
     <AppContainer>
       <Panel 
-        mixingArray={mixingArray}
-        handlerChangeState={handlerChangeState}
+        onNewGameRequest={mixingArray}
+        onStateChange={handlerChangeState}
       />
       <PlayingField 
         numbers={numbers}
         cells={cells}
         setCell={setCell}
         setNumbers={setNumbers}
-        handlerChangeState={handlerChangeState}
+        onStateChange={handlerChangeState}
       />
     </AppContainer>
   );

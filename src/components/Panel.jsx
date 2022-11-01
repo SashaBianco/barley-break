@@ -10,11 +10,11 @@ const Button = styled.button`
 
 
 
-const Buttons = (props) => {
-
+const Panel = (props) => {
+    
     const getDataForNewGame = () => {
-        const array = props.mixingArray();
-        props.handlerChangeState(array);
+        const array = props.onNewGameRequest();
+        props.onStateChange(array);
     }
     
     return (
@@ -28,6 +28,6 @@ const Buttons = (props) => {
     ) 
 }
 
-export default Buttons;
+export default Panel;
 
 

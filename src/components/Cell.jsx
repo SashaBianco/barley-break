@@ -13,6 +13,7 @@ cursor: pointer;
 `;
 
 const Cell = (props) => {
+    
     const getCurrentArray = () => {
         let array = [...props.numbers];
         let index = props.numbers.indexOf(props.cell.value);
@@ -54,7 +55,7 @@ const Cell = (props) => {
 
     const moveCell = () => {
         const array = getCurrentArray();
-        props.handlerChangeState(array);
+        props.onStateChange(array);
     }
 
     return (
