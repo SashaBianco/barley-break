@@ -13,50 +13,51 @@ const AppContainer = styled.div`
 
 function App() {
 
-  const [numbers, setNumbers] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,null]);
-
-  const [cells, setCell] = useState([
-    {value: numbers[0]},
-    {value: numbers[1]},
-    {value: numbers[2]},
-    {value: numbers[3]},
-    {value: numbers[4]},
-    {value: numbers[5]},
-    {value: numbers[6]},
-    {value: numbers[7]},
-    {value: numbers[8]},
-    {value: numbers[9]},
-    {value: numbers[10]},
-    {value: numbers[11]},
-    {value: numbers[12]},
-    {value: numbers[13]},
-    {value: numbers[14]},
-    {value: numbers[15]},
-  ])
+  const [numbers, setNumbers] = useState(Array.from({length: 16}).map((_, i) => i < 15 ?  i+1 : null));
+  const [cells, setCell] = useState(numbers.map((i) => ({value: i})));
 
   const mixingArray = () => {
-      return numbers.map(i => [Math.random(), i]).sort().map(i => i[1]);
+      const array = Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null);
+
+      const left = -1;
+      const right = 1;
+      const top = -4;
+      const bottom = 4;
+
+      const countShuffle = 10000;
+
+      for (let i = 0; i < countShuffle; i++) {
+        let shuffleOption = [];
+        const indexNull = array.indexOf(null);
+
+        if (indexNull > 3) {
+          shuffleOption.push(top);
+        } 
+
+        if (indexNull < 12) {
+          shuffleOption.push(bottom);
+        } 
+        
+        if (indexNull % 4 !== 0) {
+          shuffleOption.push(left);
+        } 
+
+        if (indexNull % 4 !== 3) {
+          shuffleOption.push(right);
+        } 
+        
+        const indexShuffleOption = Math.floor(Math.random() * shuffleOption.length);
+        const indexRandomCell = shuffleOption[indexShuffleOption];
+
+        array[indexNull] = array[indexNull + indexRandomCell];
+        array[indexNull + indexRandomCell] = null;
+      }
+
+      return array;
   }
 
   const handlerChangeState = (array) => {
-    const Cell = [
-        {value: array[0]},
-        {value: array[1]},
-        {value: array[2]},
-        {value: array[3]},
-        {value: array[4]},
-        {value: array[5]},
-        {value: array[6]},
-        {value: array[7]},
-        {value: array[8]},
-        {value: array[9]},
-        {value: array[10]},
-        {value: array[11]},
-        {value: array[12]},
-        {value: array[13]},
-        {value: array[14]},
-        {value: array[15]},
-    ]
+    const Cell = array.map((i) => ({value: i}));
     setNumbers(array);
     setCell(Cell);
 }
