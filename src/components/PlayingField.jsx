@@ -21,6 +21,9 @@ const PlayingField = (props) => {
                     setNumbers = {props.setNumbers} 
                     setCell = {props.setCell}
                     onStateChange={props.onStateChange}
+                    onStateCount={props.onStateCount}
+                    count={props.count}
+                    setCount={props.setCount}
                 />
             )}
         </Container>

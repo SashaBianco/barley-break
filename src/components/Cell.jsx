@@ -13,9 +13,24 @@ cursor: pointer;
 `;
 
 const Cell = (props) => {
+
+    const compareArr = (array, array2) => {
+        let isEqual = true;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] !== array2[i]) {
+                isEqual = false;
+                break;
+            }
+        }
+
+        if (!isEqual) {
+            props.setCount(props.onStateCount());
+        }
+    }
     
     const getCurrentArray = () => {
         let array = [...props.numbers];
+        let arrayCopy = [...props.numbers];
         let index = props.numbers.indexOf(props.cell.value);
     
         let leftValues = array.slice(0, index);
@@ -49,7 +64,9 @@ const Cell = (props) => {
             leftValues.push(null);
             array = leftValues.concat(rightValues);
         }
-        
+
+        compareArr(array, arrayCopy);
+
         return array;
     }
 

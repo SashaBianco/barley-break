@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import DifficultyLevel from "./DifficultyLevel";
+import Counter from "./Counter";
 
 const Button = styled.button`
     width: 200px;
@@ -15,6 +17,7 @@ const Panel = (props) => {
     const getDataForNewGame = () => {
         const array = props.onNewGameRequest();
         props.onStateChange(array);
+        props.setCount(0);
     }
     
     return (
@@ -22,8 +25,16 @@ const Panel = (props) => {
             <Button
                 onClick={getDataForNewGame}
             >
-                Новая игра
+                Перемешать
             </Button>
+            <DifficultyLevel 
+                diffLevel = {props.diffLevel}
+                onStateDiffLevel = {props.onStateDiffLevel}
+                onStateCountShuffle = {props.onStateCountShuffle}
+            />
+            <Counter 
+                value = {props.count}
+            />
         </div>
     ) 
 }

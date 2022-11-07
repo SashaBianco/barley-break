@@ -15,6 +15,14 @@ function App() {
 
   const [numbers, setNumbers] = useState(Array.from({length: 16}).map((_, i) => i < 15 ?  i+1 : null));
   const [cells, setCell] = useState(numbers.map((i) => ({value: i})));
+  const [count, setCount] = useState(0);
+  const [diffLevel, setDiffLevel] = useState(0);
+  const [countShuffle, setCountShuffle] = useState(0);
+
+
+  const counter = () => {
+      return count + 1;
+  }
 
   const mixingArray = () => {
       const array = Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null);
@@ -24,7 +32,9 @@ function App() {
       const top = -4;
       const bottom = 4;
 
-      const countShuffle = 10000;
+      if (diffLevel === 0) {
+        alert('Выберите сложность')
+      };
 
       for (let i = 0; i < countShuffle; i++) {
         let shuffleOption = [];
@@ -68,6 +78,12 @@ function App() {
       <Panel 
         onNewGameRequest={mixingArray}
         onStateChange={handlerChangeState}
+        count={count}
+        setCount={setCount}
+        diffLevel={diffLevel}
+        onStateDiffLevel={setDiffLevel}
+        countShuffle={countShuffle}
+        onStateCountShuffle={setCountShuffle}
       />
       <PlayingField 
         numbers={numbers}
@@ -75,6 +91,9 @@ function App() {
         setCell={setCell}
         setNumbers={setNumbers}
         onStateChange={handlerChangeState}
+        count={count}
+        setCount={setCount}
+        onStateCount={counter}
       />
     </AppContainer>
   );
