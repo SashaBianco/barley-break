@@ -24,7 +24,7 @@ const Cell = (props) => {
         }
 
         if (!isEqual) {
-            props.setCount(props.onStateCount());
+            props.onCountChange();
         }
     }
     

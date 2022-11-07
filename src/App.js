@@ -19,9 +19,8 @@ function App() {
   const [diffLevel, setDiffLevel] = useState(0);
   const [countShuffle, setCountShuffle] = useState(0);
 
-
-  const counter = () => {
-      return count + 1;
+  const changeCount = () => {
+    setCount(count + 1);
   }
 
   const mixingArray = () => {
@@ -93,7 +92,7 @@ function App() {
         onStateChange={handlerChangeState}
         count={count}
         setCount={setCount}
-        onStateCount={counter}
+        onCountChange={changeCount}
       />
     </AppContainer>
   );
