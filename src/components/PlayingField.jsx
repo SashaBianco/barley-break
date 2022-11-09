@@ -2,11 +2,14 @@ import styled from 'styled-components';
 import Cell from './Cell';
 
 const Container = styled.div`
-    width: 600px;
-    height: 600px;
-    border: 2px solid #000;
+    width: 400px;
+    height: 400px;
+    border: 2px solid #b6c2b7;
     display: grid;
-    grid-template-columns: 150px 150px 150px 150px;
+    grid-template-columns: 100px 100px 100px 100px;
+    padding: 4px;
+    box-shadow: 0px 3px 10px 2px #b6c2b7;
+    border-radius: 4px;
 `;
 
 const PlayingField = (props) => {
@@ -15,15 +18,9 @@ const PlayingField = (props) => {
         <Container>
             {props.cells.map(cell =>
                 <Cell 
-                    cell = {cell} 
+                    value = {cell.value}
                     key = {cell.value}
-                    numbers = {props.numbers} 
-                    setNumbers = {props.setNumbers} 
-                    setCell = {props.setCell}
-                    onStateChange={props.onStateChange}
-                    onCountChange={props.onCountChange}
-                    count={props.count}
-                    setCount={props.setCount}
+                    getValueCell={props.getValueCell}
                 />
             )}
         </Container>

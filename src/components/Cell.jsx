@@ -3,83 +3,30 @@ import React from 'react';
 
 
 const Field = styled.div`
-border: 1px solid gray;
+border: 1px solid #b6c2b7;
 display: flex;
 justify-content: center;
 align-items: center;
-font-size: 4em;
-background: #f2f2f2;
+font-size: 3em;
+background: #e8f5e9;
+margin: 2px;
 cursor: pointer;
+border-radius: 4px;
+&:hover {
+    background: #c8e6c9;
+}
 `;
 
 const Cell = (props) => {
-
-    const compareArr = (array, array2) => {
-        let isEqual = true;
-        for (let i = 0; i < array.length; i++) {
-            if (array[i] !== array2[i]) {
-                isEqual = false;
-                break;
-            }
-        }
-
-        if (!isEqual) {
-            props.onCountChange();
-        }
-    }
-    
-    const getCurrentArray = () => {
-        let array = [...props.numbers];
-        let arrayCopy = [...props.numbers];
-        let index = props.numbers.indexOf(props.cell.value);
-    
-        let leftValues = array.slice(0, index);
-        let rightValues = array.slice(index + 1);
-    
-        const leftIndex = index - 1;
-        const topIndex = index - 4;
-        const bottomIndex = index + 4;
-        const rightIndex = index + 1;
-    
-        if (array[rightIndex] === null && rightIndex % 4 !== 0) {
-            leftValues.push(null);
-            rightValues[0] = array[index];
-            array = leftValues.concat(rightValues);
-        }
-        
-        if (array[leftIndex] === null && leftIndex % 4 !== 3) {
-            leftValues = array.slice(0, leftIndex);
-            leftValues.push(array[index], null);
-            array = leftValues.concat(rightValues);
-        }
-        
-        if (array[bottomIndex] === null) {
-            leftValues.push(null);
-            rightValues[rightValues.indexOf(null)] = array[index];
-            array = leftValues.concat(rightValues);
-        }
-    
-        if (array[topIndex] === null)  {
-            leftValues[leftValues.indexOf(null)] = array[index];
-            leftValues.push(null);
-            array = leftValues.concat(rightValues);
-        }
-
-        compareArr(array, arrayCopy);
-
-        return array;
-    }
-
-    const moveCell = () => {
-        const array = getCurrentArray();
-        props.onStateChange(array);
-    }
+    const handleClick = () => {
+        props.getValueCell(props.value);
+    };
 
     return (
         <Field
-            onClick={moveCell}
+            onClick={handleClick}
         >
-            {props.cell.value}
+            {props.value}
         </Field> 
         
     )
