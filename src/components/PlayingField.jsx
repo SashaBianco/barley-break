@@ -4,12 +4,12 @@ import Cell from './Cell';
 const Container = styled.div`
     width: 400px;
     height: 400px;
-    border: 2px solid #b6c2b7;
+    border: 2px solid #469597;
     display: grid;
     grid-template-columns: 100px 100px 100px 100px;
-    padding: 4px;
-    box-shadow: 0px 3px 10px 2px #b6c2b7;
+    padding: 8px;
     border-radius: 4px;
+    background: white;
 `;
 
 const PlayingField = (props) => {

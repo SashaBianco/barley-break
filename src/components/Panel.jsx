@@ -9,19 +9,17 @@ const Container = styled.div`
 `
 
 const Button = styled.button`
-    width: 412px;
-    height: 50px;
-    border: 1px solid #b6c2b7;
+    width: 420px;
+    height: 60px;
+    border: 1px solid #469597;
     cursor: pointer;
-    background: #e8f5e9;
-    color: #000000;
+    background: #469597;
+    color: #fff;
     border-radius: 4px;
-    font-size: 1em;
+    font-size: 1.5em;
     box-shadow: 0px 3px 10px 2px #b6c2b7;
 
-    &:hover {
-        background: #c8e6c9;
-    }
+    
 `
 
 const Panel = (props) => {
