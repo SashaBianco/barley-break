@@ -5,23 +5,23 @@ const Form = styled.div`
     margin-bottom: 20px;
 `
 
-const DifficultyLevel = (props) => {
+const SelectionDifficulty = (props) => {
 
     const handlerChangeInput = (e) => {
         const value = e.target.value;
-        props.getCountShuffle(value);
+        props.setLevel(value);
     }
 
     return (
         <Form>
             <select  onChange={handlerChangeInput}>
-                <option value='easy'>Легко</option>
-                <option value='medium'>Средне</option>
-                <option value='hard'>Сложно</option>
+                <option value='easy'>Легкий</option>
+                <option value='medium'>Средний</option>
+                <option value='hard'>Сложный</option>
             </select>
         </Form>
     )
 }
     
 
-export default DifficultyLevel;
+export default SelectionDifficulty;

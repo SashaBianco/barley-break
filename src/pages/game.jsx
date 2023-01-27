@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import PlayingField from '../components/PlayingField';
-import Panel from '../components/Panel';
 import React, {useState} from 'react';
-import DifficultyLevel from "../components/DifficultyLevel";
 import Counter from "../components/Counter";
 
 
@@ -15,13 +13,12 @@ const AppContainer = styled.div`
   flex-direction: column;
 `
 
-function Game() {
+function Game(props) {
   const winCombination = Array.from({length: 16}).map((_, i) => i < 15 ?  i+1 : null);
 
-  const [numbers, setNumbers] = useState(winCombination);
-  const [cells, setCells] = useState(numbers.map((i) => ({value: i})));
+  const [cells, setCells] = useState(props.combination.map((i) => ({value: i})));
   const [stepCounter, setStepCounter] = useState(0);
-  const [countShuffle, setCountShuffle] = useState(50);
+
   
 
   
@@ -43,36 +40,36 @@ function Game() {
       }
   }
 
-  const mixingArray = () => {
-      const array = Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null);
+  const mixingArray = (value) => {
+    const array = Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null);
 
-      const left = -1;
-      const right = 1;
-      const top = -4;
-      const bottom = 4;
+    const left = -1;
+    const right = 1;
+    const top = -4;
+    const bottom = 4;
 
-      for (let i = 0; i < countShuffle; i++) {
-          let shuffleOption = [];
-          const indexNull = array.indexOf(null);
+    for (let i = 0; i < value; i++) {
+        let shuffleOption = [];
+        const indexNull = array.indexOf(null);
 
-          if (indexNull > 3) {shuffleOption.push(top)};
-          if (indexNull < 12) {shuffleOption.push(bottom)};
-          if (indexNull % 4 !== 0) {shuffleOption.push(left)};
-          if (indexNull % 4 !== 3) {shuffleOption.push(right)}; 
-          
-          const indexShuffleOption = Math.floor(Math.random() * shuffleOption.length);
-          const indexRandomCell = shuffleOption[indexShuffleOption];
+        if (indexNull > 3) {shuffleOption.push(top)};
+        if (indexNull < 12) {shuffleOption.push(bottom)};
+        if (indexNull % 4 !== 0) {shuffleOption.push(left)};
+        if (indexNull % 4 !== 3) {shuffleOption.push(right)}; 
+        
+        const indexShuffleOption = Math.floor(Math.random() * shuffleOption.length);
+        const indexRandomCell = shuffleOption[indexShuffleOption];
 
-          array[indexNull] = array[indexNull + indexRandomCell];
-          array[indexNull + indexRandomCell] = null;
-      }
+        array[indexNull] = array[indexNull + indexRandomCell];
+        array[indexNull + indexRandomCell] = null;
+    }
 
-      return array;
-  }
+    return array;
+}
 
   const getArray = (value) => {
-    let array = [...numbers];
-    let arrayCopy = [...numbers];
+    let array = [...props.combination];
+    let arrayCopy = [...props.combination];
     let index = array.indexOf(value);
     let leftValues = array.slice(0, index);
     let rightValues = array.slice(index + 1);
@@ -114,7 +111,7 @@ function Game() {
 
   const handlerChangeState = (array) => {
       const Cell = array.map((i) => ({value: i}));
-      setNumbers(array);
+      props.onStateCombination(array);
       setCells(Cell);
   }
 
@@ -123,18 +120,7 @@ function Game() {
     handlerChangeState(array);
   }
 
-  const getNewGame = () => {
-    const array = mixingArray();
-    handlerChangeState(array);
-    setStepCounter(0);
-  }
-
-  const getCountShuffle = (difficulty) => {
-      if (difficulty === 'easy') {setCountShuffle(50)};
-      if (difficulty === 'medium') {setCountShuffle(100)};
-      if (difficulty === 'hard') {setCountShuffle(300)};
-  }
-
+ 
 
   const checkResult = (array, arrayCurrent) => {
     let isEqual = JSON.stringify(array) == JSON.stringify(arrayCurrent);
@@ -145,10 +131,6 @@ function Game() {
 
   return (
     <AppContainer>
-      <DifficultyLevel 
-          onStateCountShuffle = {getCountShuffle}
-          getCountShuffle={getCountShuffle}
-      />
       <Counter 
           value = {stepCounter}
       />
@@ -158,9 +140,7 @@ function Game() {
           getValueCell={getValueCell}
       />
 
-      <Panel 
-          onNewGameRequest={getNewGame}
-      />
+  
     </AppContainer>
   );
 }
