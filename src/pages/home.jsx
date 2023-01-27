@@ -4,12 +4,10 @@ import SelectionDifficulty from '../components/SelectionDifficulty';
 import React, { useState } from "react";
 
 
-
 const Container = styled.div`
-    width: 100%;
+    width: 400px;
     height: 100vh;
     margin: auto;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,6 +18,22 @@ const H1 = styled.h1`
     font-size: 4em;
 `;
 
+const Button = styled.button`
+    height: 54px;
+    width: 400px;
+    background: none;
+    border-radius: 4px;
+    border: 1px solid #469597;
+    cursor: pointer;
+    background: #469597;
+    color: #fff;
+    font-size: 1.2em;
+`;
+
+const LinkStyled = styled(Link)`
+    text-decoration: none;
+    
+`
 
 const Home = (props) => {
 
@@ -78,7 +92,10 @@ const Home = (props) => {
                 <SelectionDifficulty 
                     setLevel={setLevel}
                 />
-                    <Link to='/game' onClick={newGameStart}>New game</Link>    
+                <LinkStyled to='/game' onClick={newGameStart}>
+                    <Button>New game</Button>
+                </LinkStyled> 
+                       
         </Container>
     );
 }
