@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import PlayingField from '../components/PlayingField';
 import React, {useState} from 'react';
 import Counter from "../components/Counter";
+import { Link } from 'react-router-dom';
 
 
 const AppContainer = styled.div`
@@ -13,9 +14,26 @@ const AppContainer = styled.div`
   flex-direction: column;
 `
 
+const Back = styled.a`
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    padding: 16px;
+    color: #469597;
+    border-radius: 4px;
+    &:hover {
+      outline: 1px solid #469597;
+    }
+
+    &::before {
+      content: '←';
+      padding-right: 8px;
+    }
+`;
+
+
 function Game(props) {
   const winCombination = Array.from({length: 16}).map((_, i) => i < 15 ?  i+1 : null);
-
   const [cells, setCells] = useState(props.combination.map((i) => ({value: i})));
   const [stepCounter, setStepCounter] = useState(0);
 
@@ -39,33 +57,6 @@ function Game(props) {
         changeCount();
       }
   }
-
-  const mixingArray = (value) => {
-    const array = Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null);
-
-    const left = -1;
-    const right = 1;
-    const top = -4;
-    const bottom = 4;
-
-    for (let i = 0; i < value; i++) {
-        let shuffleOption = [];
-        const indexNull = array.indexOf(null);
-
-        if (indexNull > 3) {shuffleOption.push(top)};
-        if (indexNull < 12) {shuffleOption.push(bottom)};
-        if (indexNull % 4 !== 0) {shuffleOption.push(left)};
-        if (indexNull % 4 !== 3) {shuffleOption.push(right)}; 
-        
-        const indexShuffleOption = Math.floor(Math.random() * shuffleOption.length);
-        const indexRandomCell = shuffleOption[indexShuffleOption];
-
-        array[indexNull] = array[indexNull + indexRandomCell];
-        array[indexNull + indexRandomCell] = null;
-    }
-
-    return array;
-}
 
   const getArray = (value) => {
     let array = [...props.combination];
@@ -134,6 +125,10 @@ function Game(props) {
       <Counter 
           value = {stepCounter}
       />
+      
+        <Link to='/home'>
+          <Back>Back</Back>
+        </Link>
       
       <PlayingField
           cells={cells}

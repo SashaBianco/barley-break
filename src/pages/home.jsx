@@ -30,10 +30,6 @@ const Button = styled.button`
     font-size: 1.2em;
 `;
 
-const LinkStyled = styled(Link)`
-    text-decoration: none;
-    
-`
 
 const Home = (props) => {
 
@@ -92,9 +88,9 @@ const Home = (props) => {
                 <SelectionDifficulty 
                     setLevel={setLevel}
                 />
-                <LinkStyled to='/game' onClick={newGameStart}>
+                <Link to='/game' onClick={newGameStart}>
                     <Button>New game</Button>
-                </LinkStyled> 
+                </Link> 
                        
         </Container>
     );

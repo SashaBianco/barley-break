@@ -29,13 +29,8 @@ function App() {
                   combination={combination}
                   onStateCombination={setCombination}
                 />
-              }
-              
+              }   
           /> 
-          <Route 
-              path ='*' 
-              element={<Home />} 
-          />
       </Routes>
     </BrowserRouter>
   );
