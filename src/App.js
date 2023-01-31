@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route 
-              path="/home" 
+              path="*" 
               element={
                 <Home 
                   onStateCombination={setCombination}

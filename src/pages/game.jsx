@@ -3,6 +3,7 @@ import PlayingField from '../components/PlayingField';
 import React, {useState} from 'react';
 import Counter from "../components/Counter";
 import { Link } from 'react-router-dom';
+import WinnerModal from '../components/WinnerModal';
 
 
 const AppContainer = styled.div`
@@ -14,7 +15,9 @@ const AppContainer = styled.div`
   flex-direction: column;
 `
 
-const Back = styled.a`
+const Back = styled.button`
+    background: none;
+    border: none;
     position: absolute;
     top: 32px;
     left: 32px;
@@ -32,11 +35,12 @@ const Back = styled.a`
 `;
 
 
+
 function Game(props) {
   const winCombination = Array.from({length: 16}).map((_, i) => i < 15 ?  i+1 : null);
   const [cells, setCells] = useState(props.combination.map((i) => ({value: i})));
   const [stepCounter, setStepCounter] = useState(0);
-
+  const [modal, setModal] = useState(false);
   
 
   
@@ -116,16 +120,14 @@ function Game(props) {
   const checkResult = (array, arrayCurrent) => {
     let isEqual = JSON.stringify(array) == JSON.stringify(arrayCurrent);
     if (isEqual) {
-      console.log('you win');
+      setModal(true);
+
     }
   }
 
+
   return (
-    <AppContainer>
-      <Counter 
-          value = {stepCounter}
-      />
-      
+    <AppContainer>      
         <Link to='/home'>
           <Back>Back</Back>
         </Link>
@@ -134,7 +136,12 @@ function Game(props) {
           cells={cells}
           getValueCell={getValueCell}
       />
-
+     <WinnerModal
+        modal={modal}
+        onStateModale={setModal}
+        value={stepCounter}
+        setStepCounter={setStepCounter}
+     />
   
     </AppContainer>
   );
