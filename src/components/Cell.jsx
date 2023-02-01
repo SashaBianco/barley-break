@@ -19,10 +19,11 @@ const Field = styled.div`
     &:hover {
         background: rgba(91, 161, 153, 0.2);
         transition: all 0.7s ease;
+        outline: 1px solid #469597;
     }
     
     ${ ({isEmpty})  =>  isEmpty   
-                                ? 'background: none; border: none; cursor: default; &:hover {background: none;}'
+                                ? 'background: none; border: none; cursor: default; &:hover {background: none; outline: none;}'
                                 :  ''
     }
 `;
