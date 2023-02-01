@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {FormControl, Select, MenuItem, InputLabel} from "@mui/material";
 
 const Container = styled.div`
-    width: 400px;
+    width: 350px;
     margin-top: 256px;
     display: flex;
     margin-bottom: 20px;

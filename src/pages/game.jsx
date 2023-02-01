@@ -18,11 +18,16 @@ const BackButton = styled.button`
   background: none;
   border: none;
   position: absolute;
-  top: 32px;
-  left: 32px;
+  top: 16px;
+  left: 8px;
   padding: 16px;
   color: #469597;
   border-radius: 4px;
+  @media (min-width: 768px) {
+    left:64px;
+    top: 32px;
+    font-size: 1.1em;
+  }
   &:hover {
     outline: 1px solid #469597;
     cursor: pointer;

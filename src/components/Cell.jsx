@@ -7,12 +7,15 @@ const Field = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3em;
+    font-size: 2.5em;
     margin: 4px;
     cursor: pointer;
     border-radius: 4px;
     color: #217074;
     user-select: none;
+    @media (min-width: 768px) {
+        font-size: 3em;
+    }
     &:hover {
         background: rgba(91, 161, 153, 0.2);
         transition: all 0.7s ease;

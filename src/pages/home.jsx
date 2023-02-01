@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 
 const Container = styled.div`
-    width: 400px;
+    width: 100%;
     height: 100vh;
     margin: auto;
     display: flex;
@@ -14,16 +14,19 @@ const Container = styled.div`
 `
 
 const H1 = styled.h1`
-    padding-top: 150px;
-    font-size: 4em;
+    margin-top: 200px;
+    font-size: 3em;
+    @media (min-width: 768px) {
+        margin-top: 250px;
+        font-size: 4em;
+    }
 `;
 
 const Button = styled.button`
     height: 54px;
-    width: 400px;
-    background: none;
+    width: 350px;
     border-radius: 4px;
-    border: 1px solid #469597;
+    border: none;
     cursor: pointer;
     background: #469597;
     color: #fff;
