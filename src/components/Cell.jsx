@@ -12,7 +12,6 @@ const Field = styled.div`
     cursor: pointer;
     border-radius: 4px;
     color: #217074;
-    user-select: none;
     @media (min-width: 768px) {
         font-size: 3em;
     }
