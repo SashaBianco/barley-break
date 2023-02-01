@@ -19,20 +19,21 @@ const Field = styled.div`
     }
     
     ${ ({isEmpty})  =>  isEmpty   
-                                ? 'background: none; border: none; cursor: default; &:hover { background: none;}'
+                                ? 'background: none; border: none; cursor: default; &:hover {background: none;}'
                                 :  ''
     }
 `;
 
 const Cell = (props) => {
-    const handleClick = () => {
-        props.getValueCell(props.value);
+    
+    const handlerClick = () => {
+        props.redrawField(props.value);
     };
 
     return (
         <Field
             isEmpty={props.value == null}
-            onClick={handleClick}
+            onClick={handlerClick}
         >
             {props.value}
         </Field> 

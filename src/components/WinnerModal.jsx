@@ -19,7 +19,7 @@ const WinnerModal = (props) => {
 
     const closeModal = () => {
         props.onStateModale(false);
-        props.setStepCounter(0);
+        props.onChangeScore(0);
       }
     
     return (

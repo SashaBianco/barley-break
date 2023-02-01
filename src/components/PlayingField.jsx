@@ -20,7 +20,7 @@ const PlayingField = (props) => {
                 <Cell 
                     value = {cell.value}
                     key = {cell.value}
-                    getValueCell={props.getValueCell}
+                    redrawField={props.redrawField}
                 />
             )}
         </Container>

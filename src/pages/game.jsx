@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import PlayingField from '../components/PlayingField';
 import React, {useState} from 'react';
-import Counter from "../components/Counter";
 import { Link } from 'react-router-dom';
 import WinnerModal from '../components/WinnerModal';
 
@@ -15,23 +14,23 @@ const AppContainer = styled.div`
   flex-direction: column;
 `
 
-const Back = styled.button`
-    background: none;
-    border: none;
-    position: absolute;
-    top: 32px;
-    left: 32px;
-    padding: 16px;
-    color: #469597;
-    border-radius: 4px;
-    &:hover {
-      outline: 1px solid #469597;
-    }
-
-    &::before {
-      content: '←';
-      padding-right: 8px;
-    }
+const BackButton = styled.button`
+  background: none;
+  border: none;
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  padding: 16px;
+  color: #469597;
+  border-radius: 4px;
+  &:hover {
+    outline: 1px solid #469597;
+    cursor: pointer;
+  }
+  &::before {
+    content: '←';
+    padding-right: 8px;
+  }
 `;
 
 
@@ -39,16 +38,12 @@ const Back = styled.button`
 function Game(props) {
   const winCombination = Array.from({length: 16}).map((_, i) => i < 15 ?  i+1 : null);
   const [cells, setCells] = useState(props.combination.map((i) => ({value: i})));
-  const [stepCounter, setStepCounter] = useState(0);
+  const [score, setScore] = useState(0);
   const [modal, setModal] = useState(false);
   
 
-  
-  const changeCount = () => {
-      setStepCounter(stepCounter + 1);
-  }
 
-  const compareArr = (first, second) => {
+  const changeScore = (first, second) => {
       let isEqual = true;
       for (let i = 0; i < first.length; i++) {
           if (first[i] !== second[i]) {
@@ -56,9 +51,8 @@ function Game(props) {
               break;
           }
       }
-
       if (!isEqual) {
-        changeCount();
+        setScore(score + 1);
       }
   }
 
@@ -98,21 +92,18 @@ function Game(props) {
         array = leftValues.concat(rightValues);
     }
 
-    compareArr(array, arrayCopy);
+    changeScore(array, arrayCopy);
     checkResult(winCombination, array);
     
     return array;
   }
 
-  const handlerChangeState = (array) => {
-      const Cell = array.map((i) => ({value: i}));
-      props.onStateCombination(array);
-      setCells(Cell);
-  }
 
-  const getValueCell = (value) => {
+  const redrawField = (value) => {
     const array = getArray(value);
-    handlerChangeState(array);
+    const cell = array.map((i) => ({value: i}));
+    props.onChangeCombination(array);
+    setCells(cell);
   }
 
  
@@ -129,20 +120,18 @@ function Game(props) {
   return (
     <AppContainer>      
         <Link to='/home'>
-          <Back>Back</Back>
+          <BackButton>Back</BackButton>
         </Link>
-      
       <PlayingField
-          cells={cells}
-          getValueCell={getValueCell}
+        cells={cells}
+        redrawField={redrawField}
       />
      <WinnerModal
         modal={modal}
         onStateModale={setModal}
-        value={stepCounter}
-        setStepCounter={setStepCounter}
+        value={score}
+        onChangeScore={setScore}
      />
-  
     </AppContainer>
   );
 }

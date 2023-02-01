@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import SelectionDifficulty from '../components/SelectionDifficulty';
+import DifficultySelection from '../components/DifficultySelection';
 import React, { useState } from "react";
 
 
@@ -47,7 +47,6 @@ const Home = (props) => {
 
     const mixingArray = (value) => {
         const array = Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null);
-
         const left = -1;
         const right = 1;
         const top = -4;
@@ -64,7 +63,6 @@ const Home = (props) => {
             
             const indexShuffleOption = Math.floor(Math.random() * shuffleOption.length);
             const indexRandomCell = shuffleOption[indexShuffleOption];
-  
             array[indexNull] = array[indexNull + indexRandomCell];
             array[indexNull + indexRandomCell] = null;
         }
@@ -72,23 +70,26 @@ const Home = (props) => {
         return array;
     }
   
-    const getCombination = () => {
-        let initialShuffleCount = getCountShuffle();
-        let mixedCombination = mixingArray(initialShuffleCount);
-        props.onStateCombination(mixedCombination);
+    const getCombinationForNewGame = () => {
+        const initialShuffleCount = getCountShuffle();
+        const mixedCombination = mixingArray(initialShuffleCount);
+        props.onChangeCombination(mixedCombination);
     }
     
     const newGameStart = () => {
-        getCombination()
+        getCombinationForNewGame()
     }
 
     return (
         <Container>
                 <H1>Barley-break</H1>
-                <SelectionDifficulty 
+                <DifficultySelection 
                     setLevel={setLevel}
                 />
-                <Link to='/game' onClick={newGameStart}>
+                <Link 
+                    to='/game' 
+                    onClick={newGameStart}
+                >
                     <Button>New game</Button>
                 </Link> 
                        

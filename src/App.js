@@ -3,8 +3,6 @@ import Game from './pages/game'
 import { BrowserRouter,  Route, Routes } from "react-router-dom"
 import Home from './pages/home';
 
-
-
 function App() {
   
   const [combination, setCombination] = useState(Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null));
@@ -16,18 +14,17 @@ function App() {
               path="*" 
               element={
                 <Home 
-                  onStateCombination={setCombination}
+                  onChangeCombination={setCombination}
                   combination={combination}
                 />
-              }
-              
+              }    
           /> 
           <Route 
               path="/game" 
               element={
                 <Game 
                   combination={combination}
-                  onStateCombination={setCombination}
+                  onChangeCombination={setCombination}
                 />
               }   
           /> 
