@@ -22,7 +22,12 @@ const Field = styled.div`
     }
     
     ${ ({isEmpty})  =>  isEmpty   
-                                ? 'background: none; border: none; cursor: default; &:hover {background: none; outline: none;}'
+                                 ?   `'background: none;` 
+                                    `border: none;` 
+                                    `cursor: default;` 
+                                    `&:hover {`
+                                        `background: none; `
+                                    `}'`
                                 :  ''
     }
 `;

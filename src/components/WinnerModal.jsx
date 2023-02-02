@@ -1,4 +1,4 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
+import { Modal, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -38,7 +38,7 @@ const WinnerModal = (props) => {
           open={props.modal}
         >
           <Box sx={style}>
-            <Typography variant="h4" component="h1" sx={ {p: 3}}>
+            <Typography variant="h4" component="h1" sx={ {p: 3} }>
                 Congratulations! 
             </Typography>
             <Typography sx={{ px: 3, fontSize: 18 }}>
