@@ -1,4 +1,6 @@
 import { Modal, Box, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const style = {
     position: 'absolute',
@@ -15,18 +17,25 @@ const style = {
     flexDirection: 'column',
   };
 
+const AgainGameButton = styled.button`
+  background: none;
+  border: 1px solid #469597;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+        background: rgba(91, 161, 153, 0.2);
+        transition: all 0.7s ease;
+        outline: 1px solid #469597;
+    }
+`;
 const WinnerModal = (props) => {
 
-    const closeModal = () => {
-        props.onStateModale(false);
-        props.onScoreChange(0);
-      }
-    
     return (
         <Modal
           isActive = {props.modal == true}
           open={props.modal}
-          onClose={closeModal}
         >
           <Box sx={style}>
             <Typography variant="h4" component="h1" sx={ {p: 3} }>
@@ -38,6 +47,9 @@ const WinnerModal = (props) => {
             <Typography sx={{ px: 3, fontSize: 36 }}>
               {props.value}
             </Typography>
+            <Link to={'/home'}>
+              <AgainGameButton>Play again</AgainGameButton>
+            </Link>
           </Box>
         </Modal>
     )
