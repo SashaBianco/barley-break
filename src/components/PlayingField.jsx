@@ -2,14 +2,19 @@ import styled from 'styled-components';
 import Cell from './Cell';
 
 const Container = styled.div`
-    width: 410px;
-    height: 410px;
+    width: 350px;
+    height: 350px;
     border: 2px solid #469597;
     display: grid;
-    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-columns: repeat(4,84.5px);
     padding: 4px;
     border-radius: 4px;
     background: white;
+    @media (min-width: 768px) {
+        width: 400px;
+        height: 400px;
+        grid-template-columns: repeat(4,97px);
+    }
 `;
 
 const PlayingField = (props) => {
@@ -20,7 +25,7 @@ const PlayingField = (props) => {
                 <Cell 
                     value = {cell.value}
                     key = {cell.value}
-                    getValueCell={props.getValueCell}
+                    onRedrawField={props.redrawField}
                 />
             )}
         </Container>

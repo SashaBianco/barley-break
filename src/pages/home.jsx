@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import SelectionDifficulty from '../components/SelectionDifficulty';
+import DifficultySelection from '../components/DifficultySelection';
 import React, { useState } from "react";
 
 
 const Container = styled.div`
-    width: 400px;
+    width: 100%;
     height: 100vh;
     margin: auto;
     display: flex;
@@ -14,16 +14,19 @@ const Container = styled.div`
 `
 
 const H1 = styled.h1`
-    padding-top: 150px;
-    font-size: 4em;
+    margin-top: 200px;
+    font-size: 3em;
+    @media (min-width: 768px) {
+        margin-top: 250px;
+        font-size: 4em;
+    }
 `;
 
 const Button = styled.button`
     height: 54px;
-    width: 400px;
-    background: none;
+    width: 350px;
     border-radius: 4px;
-    border: 1px solid #469597;
+    border: none;
     cursor: pointer;
     background: #469597;
     color: #fff;
@@ -47,7 +50,6 @@ const Home = (props) => {
 
     const mixingArray = (value) => {
         const array = Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null);
-
         const left = -1;
         const right = 1;
         const top = -4;
@@ -64,7 +66,6 @@ const Home = (props) => {
             
             const indexShuffleOption = Math.floor(Math.random() * shuffleOption.length);
             const indexRandomCell = shuffleOption[indexShuffleOption];
-  
             array[indexNull] = array[indexNull + indexRandomCell];
             array[indexNull + indexRandomCell] = null;
         }
@@ -72,23 +73,26 @@ const Home = (props) => {
         return array;
     }
   
-    const getCombination = () => {
-        let initialShuffleCount = getCountShuffle();
-        let mixedCombination = mixingArray(initialShuffleCount);
-        props.onStateCombination(mixedCombination);
+    const updateCombinationForNewGame = () => {
+        const initialShuffleCount = getCountShuffle();
+        const mixedCombination = mixingArray(initialShuffleCount);
+        props.onChangeCombination(mixedCombination);
     }
     
     const newGameStart = () => {
-        getCombination()
+        updateCombinationForNewGame()
     }
 
     return (
         <Container>
                 <H1>Barley-break</H1>
-                <SelectionDifficulty 
+                <DifficultySelection 
                     setLevel={setLevel}
                 />
-                <Link to='/game' onClick={newGameStart}>
+                <Link 
+                    to='/game' 
+                    onClick={newGameStart}
+                >
                     <Button>New game</Button>
                 </Link> 
                        

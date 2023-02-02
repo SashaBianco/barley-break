@@ -5,7 +5,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 'auto',
+    width: '350px',
     bgcolor: 'background.paper',
     outline: 'none',
     p: 4,
@@ -19,7 +19,7 @@ const WinnerModal = (props) => {
 
     const closeModal = () => {
         props.onStateModale(false);
-        props.setStepCounter(0);
+        props.onScoreChange(0);
       }
     
     return (
@@ -29,7 +29,7 @@ const WinnerModal = (props) => {
           onClose={closeModal}
         >
           <Box sx={style}>
-            <Typography variant="h3" component="h1" sx={ {p: 3}}>
+            <Typography variant="h4" component="h1" sx={ {p: 3} }>
                 Congratulations! 
             </Typography>
             <Typography sx={{ px: 3, fontSize: 18 }}>
