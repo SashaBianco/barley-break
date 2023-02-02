@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.b4eaf164.css","mappings":"AAAA,EAEC,QAAW,CADX,SAED,CAEA,iBAGC,qBACD,CAEA,EACC,oBACD","sources":["index.css"],"sourcesContent":["* {\r\n\tpadding: 0px;\r\n\tmargin: 0px;\r\n}\r\n\r\n*,\r\n*::before,\r\n*::after {\r\n\tbox-sizing: border-box;\r\n}\r\n\r\na {\r\n\ttext-decoration: none;\r\n}"],"names":[],"sourceRoot":""}
