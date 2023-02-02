@@ -135,7 +135,7 @@ function Game(props) {
         modal={modal}
         onStateModale={setModal}
         value={score}
-        onChangeScore={setScore}
+        onScoreChange={setScore}
      />
     </AppContainer>
   );

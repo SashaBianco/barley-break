@@ -73,14 +73,14 @@ const Home = (props) => {
         return array;
     }
   
-    const getCombinationForNewGame = () => {
+    const updateCombinationForNewGame = () => {
         const initialShuffleCount = getCountShuffle();
         const mixedCombination = mixingArray(initialShuffleCount);
         props.onChangeCombination(mixedCombination);
     }
     
     const newGameStart = () => {
-        getCombinationForNewGame()
+        updateCombinationForNewGame()
     }
 
     return (

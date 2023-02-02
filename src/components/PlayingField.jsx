@@ -25,7 +25,7 @@ const PlayingField = (props) => {
                 <Cell 
                     value = {cell.value}
                     key = {cell.value}
-                    redrawField={props.redrawField}
+                    onRedrawField={props.redrawField}
                 />
             )}
         </Container>

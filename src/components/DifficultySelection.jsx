@@ -33,5 +33,4 @@ const DifficultySelection = (props) => {
     )
 }
     
-
 export default DifficultySelection;
