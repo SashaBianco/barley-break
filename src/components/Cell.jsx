@@ -22,7 +22,7 @@ const Field = styled.div`
     }
     
     ${ ({isEmpty})  =>  isEmpty   
-                                 ?   `'background: none;` 
+                                ?   `'background: none;` 
                                     `border: none;` 
                                     `cursor: default;` 
                                     `&:hover {`
@@ -34,14 +34,14 @@ const Field = styled.div`
 
 const Cell = (props) => {
     
-    const handlerClick = () => {
-        props.redrawField(props.value);
+    const handleClick = () => {
+        props.onRedrawField(props.value);
     };
 
     return (
         <Field
             isEmpty={props.value == null}
-            onClick={handlerClick}
+            onClick={handleClick}
         >
             {props.value}
         </Field> 

@@ -8,7 +8,7 @@ function App() {
   const [combination, setCombination] = useState(Array.from({length: 16}).map((_, i) => i < 15 ? i + 1 : null));
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/barley-break'>
       <Routes>
           <Route 
               path="*" 
@@ -32,4 +32,5 @@ function App() {
     </BrowserRouter>
   );
 }
+
 export default App;
