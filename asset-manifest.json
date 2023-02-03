@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/barley-break/static/css/main.b4eaf164.css",
-    "main.js": "/barley-break/static/js/main.006b692e.js",
+    "main.css": "/barley-break/static/css/main.5d131098.css",
+    "main.js": "/barley-break/static/js/main.53a364da.js",
     "static/js/787.6bc4054f.chunk.js": "/barley-break/static/js/787.6bc4054f.chunk.js",
     "index.html": "/barley-break/index.html",
-    "main.b4eaf164.css.map": "/barley-break/static/css/main.b4eaf164.css.map",
-    "main.006b692e.js.map": "/barley-break/static/js/main.006b692e.js.map",
+    "main.5d131098.css.map": "/barley-break/static/css/main.5d131098.css.map",
+    "main.53a364da.js.map": "/barley-break/static/js/main.53a364da.js.map",
     "787.6bc4054f.chunk.js.map": "/barley-break/static/js/787.6bc4054f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4eaf164.css",
-    "static/js/main.006b692e.js"
+    "static/css/main.5d131098.css",
+    "static/js/main.53a364da.js"
   ]
 }
