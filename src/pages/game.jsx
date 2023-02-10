@@ -42,7 +42,7 @@ const BackButton = styled.button`
 
 function Game(props) {
   const [cells, setCells] = useState(props.combination.map((i) => ({value: i})));
-  const [score, setScore] = useState( ()=> {
+  const [score, setScore] = useState( () => {
     return JSON.parse(localStorage.getItem("score")) || 0;
   });
   const [modal, setModal] = useState(false);
