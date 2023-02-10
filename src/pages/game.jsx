@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PlayingField from '../components/PlayingField';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import WinnerModal from '../components/WinnerModal';
 
@@ -41,12 +41,16 @@ const BackButton = styled.button`
 
 
 function Game(props) {
-  const winCombination = Array.from({length: 16}).map((_, i) => i < 15 ?  i+1 : null);
   const [cells, setCells] = useState(props.combination.map((i) => ({value: i})));
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState( ()=> {
+    return JSON.parse(localStorage.getItem("score")) || 0;
+  });
   const [modal, setModal] = useState(false);
-  
 
+  useEffect( () => {
+    localStorage.setItem('score', JSON.stringify(score));
+  }, [score])
+  
 
   const changeScore = (first, second) => {
       let isEqual = true;
@@ -98,8 +102,8 @@ function Game(props) {
     }
 
     changeScore(array, arrayCopy);
-    checkResult(winCombination, array);
-    
+    checkResult(props.defaultCombination, array);
+
     return array;
   }
 
@@ -117,14 +121,16 @@ function Game(props) {
     let isEqual = JSON.stringify(array) == JSON.stringify(arrayCurrent);
     if (isEqual) {
       setModal(true);
-
     }
   }
 
+  const resetLocalStorage = () => {
+    localStorage.clear();
+  }
 
   return (
     <AppContainer>      
-        <Link to='/home'>
+        <Link to='/home' onClick={resetLocalStorage}>
           <BackButton>Back</BackButton>
         </Link>
       <PlayingField
@@ -136,6 +142,7 @@ function Game(props) {
         onStateModale={setModal}
         value={score}
         onScoreChange={setScore}
+        resetLocalStorage={resetLocalStorage}
      />
     </AppContainer>
   );

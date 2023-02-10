@@ -28,6 +28,8 @@ const Field = styled.div`
                                     cursor: default;
                                     &:hover {
                                         background: none; 
+                                        outline: none;
+                                        border: none;
                                     }'
                                     `
                                 :  ''
@@ -38,6 +40,7 @@ const Cell = (props) => {
     
     const handleClick = () => {
         props.onRedrawField(props.value);
+        
     };
 
     return (

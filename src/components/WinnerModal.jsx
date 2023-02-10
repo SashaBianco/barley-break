@@ -34,7 +34,6 @@ const WinnerModal = (props) => {
 
     return (
         <Modal
-          isActive = {props.modal == true}
           open={props.modal}
         >
           <Box sx={style}>
@@ -47,7 +46,7 @@ const WinnerModal = (props) => {
             <Typography sx={{ px: 3, fontSize: 36 }}>
               {props.value}
             </Typography>
-            <Link to={'/home'}>
+            <Link to={'/home'} onClick={props.resetLocalStorage}>
               <AgainGameButton>Play again</AgainGameButton>
             </Link>
           </Box>

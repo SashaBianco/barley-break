@@ -36,10 +36,12 @@ const Button = styled.button`
 
 const Home = (props) => {
 
+    
+
     const [level, setLevel] = useState('easy');
 
     const getCountShuffle = () => {
-        const valueForEasy = 100;
+        const valueForEasy = 3;
         const valueForMedium = 300;
         const valueForHard = 900;
 
@@ -81,6 +83,7 @@ const Home = (props) => {
     
     const newGameStart = () => {
         updateCombinationForNewGame()
+        localStorage.clear('score'); 
     }
 
     return (
