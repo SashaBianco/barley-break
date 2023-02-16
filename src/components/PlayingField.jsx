@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import Cell from './Cell';
+import styled from 'styled-components'
+import Cell from './Cell'
+import React from 'react'
 
 const Container = styled.div`
     width: 350px;
@@ -15,22 +16,20 @@ const Container = styled.div`
         height: 400px;
         grid-template-columns: repeat(4,97px);
     }
-`;
+`
 
 const PlayingField = (props) => {
-
-    return (
+  return (
         <Container>
             {props.cells.map(cell =>
-                <Cell 
+                <Cell
                     value = {cell.value}
                     key = {cell.value}
                     onRedrawField={props.redrawField}
                 />
             )}
         </Container>
-            
-    )
+  )
 }
 
-export default PlayingField;
+export default PlayingField

@@ -1,9 +1,8 @@
-import styled from 'styled-components';
-import PlayingField from '../components/PlayingField';
-import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
-import WinnerModal from '../components/WinnerModal';
-
+import styled from 'styled-components'
+import PlayingField from '../components/PlayingField'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import WinnerModal from '../components/WinnerModal'
 
 const AppContainer = styled.div`
   height: 100vh;
@@ -36,100 +35,94 @@ const BackButton = styled.button`
     content: '←';
     padding-right: 8px;
   }
-`;
+`
 
+function Game (props) {
+  const [cells, setCells] = useState(props.combination.map((i) => ({ value: i })))
+  const [score, setScore] = useState(() => {
+    return JSON.parse(localStorage.getItem('score')) || 0
+  })
+  const [modal, setModal] = useState(false)
 
-
-function Game(props) {
-  const [cells, setCells] = useState(props.combination.map((i) => ({value: i})));
-  const [score, setScore] = useState( () => {
-    return JSON.parse(localStorage.getItem("score")) || 0;
-  });
-  const [modal, setModal] = useState(false);
-
-  useEffect( () => {
-    localStorage.setItem('score', JSON.stringify(score));
+  useEffect(() => {
+    localStorage.setItem('score', JSON.stringify(score))
   }, [score])
-  
 
   const changeScore = (first, second) => {
-      let isEqual = true;
-      for (let i = 0; i < first.length; i++) {
-          if (first[i] !== second[i]) {
-              isEqual = false;
-              break;
-          }
+    let isEqual = true
+    for (let i = 0; i < first.length; i++) {
+      if (first[i] !== second[i]) {
+        isEqual = false
+        break
       }
-      if (!isEqual) {
-        setScore(score + 1);
-      }
+    }
+    if (!isEqual) {
+      setScore(score + 1)
+    }
   }
 
   const getArray = (value) => {
-    let array = [...props.combination];
-    let arrayCopy = [...props.combination];
-    let index = array.indexOf(value);
-    let leftValues = array.slice(0, index);
-    let rightValues = array.slice(index + 1);
+    let array = [...props.combination]
+    const arrayCopy = [...props.combination]
+    const index = array.indexOf(value)
+    let leftValues = array.slice(0, index)
+    const rightValues = array.slice(index + 1)
 
-    const leftIndex = index - 1;
-    const topIndex = index - 4;
-    const bottomIndex = index + 4;
-    const rightIndex = index + 1;
+    const leftIndex = index - 1
+    const topIndex = index - 4
+    const bottomIndex = index + 4
+    const rightIndex = index + 1
 
     if (array[rightIndex] === null && rightIndex % 4 !== 0) {
-        leftValues.push(null);
-        rightValues[0] = array[index];
-        array = leftValues.concat(rightValues);
+      leftValues.push(null)
+      rightValues[0] = array[index]
+      array = leftValues.concat(rightValues)
     }
-    
+
     if (array[leftIndex] === null && leftIndex % 4 !== 3) {
-        leftValues = array.slice(0, leftIndex);
-        leftValues.push(array[index], null);
-        array = leftValues.concat(rightValues);
+      leftValues = array.slice(0, leftIndex)
+      leftValues.push(array[index], null)
+      array = leftValues.concat(rightValues)
     }
-    
+
     if (array[bottomIndex] === null) {
-        leftValues.push(null);
-        rightValues[rightValues.indexOf(null)] = array[index];
-        array = leftValues.concat(rightValues);
+      leftValues.push(null)
+      rightValues[rightValues.indexOf(null)] = array[index]
+      array = leftValues.concat(rightValues)
     }
 
-    if (array[topIndex] === null)  {
-        leftValues[leftValues.indexOf(null)] = array[index];
-        leftValues.push(null);
-        array = leftValues.concat(rightValues);
+    if (array[topIndex] === null) {
+      leftValues[leftValues.indexOf(null)] = array[index]
+      leftValues.push(null)
+      array = leftValues.concat(rightValues)
     }
 
-    changeScore(array, arrayCopy);
-    checkResult(props.defaultCombination, array);
+    changeScore(array, arrayCopy)
+    checkResult(props.defaultCombination, array)
 
-    return array;
+    return array
   }
-
 
   const redrawField = (value) => {
-    const array = getArray(value);
-    const cell = array.map((i) => ({value: i}));
-    props.onChangeCombination(array);
-    setCells(cell);
+    const array = getArray(value)
+    const cell = array.map((i) => ({ value: i }))
+    props.onChangeCombination(array)
+    setCells(cell)
   }
 
- 
-
   const checkResult = (array, arrayCurrent) => {
-    let isEqual = JSON.stringify(array) == JSON.stringify(arrayCurrent);
+    const isEqual = JSON.stringify(array) === JSON.stringify(arrayCurrent)
     if (isEqual) {
-      setModal(true);
+      setModal(true)
     }
   }
 
   const resetLocalStorage = () => {
-    localStorage.clear();
+    localStorage.clear()
   }
 
   return (
-    <AppContainer>      
+    <AppContainer>
         <Link to='/home' onClick={resetLocalStorage}>
           <BackButton>Back</BackButton>
         </Link>
@@ -145,7 +138,7 @@ function Game(props) {
         resetLocalStorage={resetLocalStorage}
      />
     </AppContainer>
-  );
+  )
 }
 
-export default Game;
+export default Game

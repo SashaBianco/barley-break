@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-import React from 'react';
-
+import styled from 'styled-components'
+import React from 'react'
 
 const Field = styled.div`
     border: 1px solid #469597;
@@ -21,8 +20,8 @@ const Field = styled.div`
         outline: 1px solid #469597;
     }
     
-    ${ ({isEmpty})  =>  isEmpty   
-                                ?   `
+    ${({ isEmpty }) => isEmpty
+                                ? `
                                     background: none;
                                     border: none; 
                                     cursor: default;
@@ -32,27 +31,24 @@ const Field = styled.div`
                                         border: none;
                                     }'
                                     `
-                                :  ''
+                                : ''
     }
-`;
+`
 
 const Cell = (props) => {
-    
-    const handleClick = () => {
-        props.onRedrawField(props.value);
-        
-    };
+  const handleClick = () => {
+    props.onRedrawField(props.value)
+  }
 
-    return (
+  return (
         <Field
             isEmpty={props.value == null}
             onClick={handleClick}
         >
             {props.value}
-        </Field> 
-        
-    )
-    
+        </Field>
+
+  )
 }
 
-export default Cell;
+export default Cell
